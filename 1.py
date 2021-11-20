@@ -30,7 +30,7 @@ def Calculate():
     Result2 = round((y / x - 1) * 100,          2)  # % Change
     Result3 = round((y / x - 1) * 100 + 100,    2)  # % From Initial
 
-    if Result2 > 0:
+    if Result2 >= 0:
         incdec = "increase"
     else:
         incdec = "decrease"; Result2 = -Result2
