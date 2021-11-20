@@ -1,5 +1,5 @@
 from tkinter import *  # tkinter library
-import os  # windows terminal commands
+from tkinter import messagebox
 
 root = Tk()
 root.title("🔺% Calc")  # empty title ("tk" by default)
@@ -8,27 +8,27 @@ root.title("🔺% Calc")  # empty title ("tk" by default)
 # GUI
 Label(text="Percentage Change Calculator").grid(column=2)  # title
 
-number1_text = Label(text="Value One [x]").grid(column=2)
-number1_input = Entry(); number1_input.grid(column=2)
+valx_text = Label(text="Value One [x]").grid(column=2)
+valx_input = Entry(); valx_input.grid(column=2)
 
-number2_text = Label(text="Value Two [y]").grid(column=2)
-number2_input = Entry(); number2_input.grid(column=2)
+valy_text = Label(text="Value Two [y]").grid(column=2)
+valy_input = Entry(); valy_input.grid(column=2)
 
 
 # calculate function
 def Calculate():
     # check if all variables are valid types
     try:
-        num1 = float(number1_input.get())
-        num2 = float(number2_input.get())
+        x = float(valx_input.get())
+        y = float(valy_input.get())
 
     except:
-        os.system('msg "%username%" Error: input value(s) invalid, must be a number.')
+        messagebox.showinfo(title="error",message="Error: input value(s) invalid, must be a number.")
         return
 
-    Result1 = round((num2 / num1), 2)  # x Multiplier
-    Result2 = round((num2 / num1 - 1) * 100, 2)  # % Change
-    Result3 = round((num2 / num1 - 1) * 100 + 100, 2)  # % From Initial
+    Result1 = round((y / x),                    2)  # x Multiplier
+    Result2 = round((y / x - 1) * 100,          2)  # % Change
+    Result3 = round((y / x - 1) * 100 + 100,    2)  # % From Initial
 
     if Result2 > 0:
         incdec = "increase"
@@ -45,5 +45,6 @@ def Calculate():
 
 root.bind('<Return>', lambda event: Calculate())  # calculate when press ENTER
 calculate_button = Button(text="Calculate", command=Calculate).grid(column=2)  # calculate button
+
 
 root.mainloop()
