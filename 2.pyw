@@ -41,38 +41,34 @@ def Calculate():
 
         # Type 2: x, m/c/p
         try:
-            x = float(x_input.get())
-            while True: # Get a scale for y
-                try: # Get m
-                    m = float(m_input.get());   y = x * m;              break
-                except: pass
-                try: # Get c
-                    c = float(c_input.get());   y = x * (c / 100 + 1);  break
-                except: pass
-                try: # Get p
-                    p = float(p_input.get());   y = x * (p / 100);      break
-                except:
-                    print("total fail (2), no scale")
-                    messagebox.showinfo(title="error", message="Error: Missing a scaling value: [*],[🔺%],[%]."); return  # debug error
-            break
+            x = float(x_input.get()) # Get a scale for y
+            try: # Get m
+                m = float(m_input.get());   y = x * m;              break
+            except: pass
+            try: # Get c
+                c = float(c_input.get());   y = x * (c / 100 + 1);  break
+            except: pass
+            try: # Get p
+                p = float(p_input.get());   y = x * (p / 100);      break
+            except:
+                print("total fail (2), no scale")
+                messagebox.showinfo(title="error", message="Error: Missing a scaling value: [*],[🔺%],[%]."); return  # debug error
         except: print("type 2 fail, x")# debug error
-
+# x9.17 btc to gold mkt cap
         # Type 3: y, m/c/p
         try:
-            y = float(y_input.get())
-            while True: # Get a scale for x
-                try: # Get m
-                    m = float(m_input.get());   x = y / m;              break
-                except: pass
-                try: # Get c
-                    c = float(c_input.get());   x = y / (c / 100 + 1);  break
-                except: pass
-                try: # Get p
-                    p = float(p_input.get());   x = y / (p / 100);      break
-                except:
-                    print("total fail (3), no scale")
-                    messagebox.showinfo(title="error", message="Error: Missing a scaling value: [*],[🔺%],[%]."); return # debug error
-
+            y = float(y_input.get()) # Get a scale for x
+            try: # Get m
+                m = float(m_input.get());   x = y / m;              break
+            except: pass
+            try: # Get c
+                c = float(c_input.get());   x = y / (c / 100 + 1);  break
+            except: pass
+            try: # Get p
+                p = float(p_input.get());   x = y / (p / 100);      break
+            except:
+                print("total fail (3), no scale")
+                messagebox.showinfo(title="error", message="Error: Missing a scaling value: [*],[🔺%],[%]."); return # debug error
         except:
             print("type 3 fail"); print("total fail, x and y absent") # debug error
             messagebox.showinfo(title="error", message="Error: Missing value one [x] and/or value two [y]")
@@ -91,7 +87,7 @@ def Calculate():
     p_input.delete(0, "end"); p_input.insert(0, "{}%".format(p))
     #f_input.delete(0, "end"); f_input.insert(0, f)
 
-def clear():
+def Clear():
     x_input.delete(0, "end")
     y_input.delete(0, "end")
     m_input.delete(0, "end")
@@ -100,7 +96,9 @@ def clear():
 
 
 root.bind('<Return>', lambda event: Calculate())  # calculate when press ENTER
+root.bind('<Escape>', lambda event: Clear())  # calculate when press ENTER
+
 calculate_button = Button(text="Calculate", command=Calculate).grid(column=2)  # calculate button
-clear_button = Button(text="Clear", command=clear).grid(column=2)  # calculate button
+clear_button = Button(text="Clear", command=Clear).grid(column=2)  # calculate button
 
 root.mainloop()
