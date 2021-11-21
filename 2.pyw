@@ -54,7 +54,7 @@ def Calculate():
                 print("total fail (2), no scale")
                 messagebox.showinfo(title="error", message="Error: Missing a scaling value: [*],[🔺%],[%]."); return  # debug error
         except: print("type 2 fail, x")# debug error
-# x9.17 btc to gold mkt cap
+
         # Type 3: y, m/c/p
         try:
             y = float(y_input.get()) # Get a scale for x
